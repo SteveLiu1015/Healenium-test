@@ -1,0 +1,34 @@
+{
+  "name": "healenium-sandbox",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "workspaces": [
+    "app",
+    "tests"
+  ],
+  "scripts": {
+    "hlm:up": "docker compose -f healenium/docker-compose.yaml up -d",
+    "hlm:down": "docker compose -f healenium/docker-compose.yaml down",
+    "hlm:reset": "docker compose -f healenium/docker-compose.yaml down -v",
+    "hlm:ps": "docker compose -f healenium/docker-compose.yaml ps",
+    "hlm:logs": "docker compose -f healenium/docker-compose.yaml logs -f hlm-proxy healenium",
+    "hlm:heal-off": "cross-env HEAL_ENABLED=false docker compose -f healenium/docker-compose.yaml up -d --force-recreate hlm-proxy",
+    "hlm:heal-on": "cross-env HEAL_ENABLED=true docker compose -f healenium/docker-compose.yaml up -d --force-recreate hlm-proxy",
+    "dev": "npm run dev:baseline -w app",
+    "dev:baseline": "npm run dev:baseline -w app",
+    "dev:rename-id": "npm run dev:rename-id -w app",
+    "dev:rename-class": "npm run dev:rename-class -w app",
+    "dev:nest-deeper": "npm run dev:nest-deeper -w app",
+    "dev:change-text": "npm run dev:change-text -w app",
+    "dev:change-tag": "npm run dev:change-tag -w app",
+    "dev:all": "npm run dev:all -w app",
+    "test": "npm test -w tests",
+    "test:no-heal": "npm run test:no-heal -w tests",
+    "test:direct": "npm run test:direct -w tests",
+    "check": "npm run check -w app && npm run typecheck -w tests"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
+  }
+}
